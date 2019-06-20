@@ -1,0 +1,55 @@
+<section id="aa-product-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-product-details-area">
+          <!-- Related product -->
+          <div class="aa-product-related-item">
+            <div class="row" style="height: 600px">
+              <div class="col-md-4"
+                *ngFor="let user of users$ | async | paginate: { itemsPerPage: 3, currentPage: page }"
+                class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" ngbTooltip="Click to Open {{user.firstName}} {{user.lastName}} Page"
+                    (click)="showUser(user.id)">
+                    <img [src]="'data:Image/jpg;base64,' + user.userPhoto" alt="Avatar"
+                      style="width:300px;height:300px;">
+                  </div>
+                  <div class="flip-card-back">
+                    <img [src]="'data:Image/jpg;base64,' + user.userPhoto" alt="John" style="width:300px;height:300px;"
+                      ngbTooltip="Click to Open {{user.firstName}} {{user.lastName}} Page" (click)="showUser(user.id)">
+                    <p></p>
+                    <h1 class="title" ngbTooltip="Name">{{user.firstName}} {{user.lastName}}</h1>
+                    <p class="title" ngbTooltip="Email">{{user.email}}</p>
+                    <p class="title" ngbTooltip="Gender">{{user.gender}}</p>
+                    <a ngbTooltip="Twitter Link" *ngIf="user.userSocialMedias.twitter != null"
+                      href="{{user.userSocialMedias.twitter}}"><i class="fa fa-twitter"></i></a>
+                    <a ngbTooltip="LinkedIn Link" *ngIf="user.userSocialMedias.linkedIn != null"
+                      href="{{user.userSocialMedias.linkedIn}}"><i class="fa fa-linkedin"></i></a>
+                    <a ngbTooltip="facebook Link" *ngIf="user.userSocialMedias.facebook != null"
+                      href="{{user.userSocialMedias.facebook}}"><i class="fa fa-facebook"></i></a>
+                    <a ngbTooltip="githup Link" *ngIf="user.userSocialMedias.githup != null"
+                      href="{{user.userSocialMedias.githup}}"><i class="fa fa-githup"></i></a>
+                    <a ngbTooltip="googlePlus Link" *ngIf="user.userSocialMedias.googlePlus != null"
+                      href="{{user.userSocialMedias.googlePlus}}"><i class="fa fa-googlePlus"></i></a>
+                    <a ngbTooltip="instagram Link" *ngIf="user.userSocialMedias.instagram != null"
+                      href="{{user.userSocialMedias.instagram}}"><i class="fa fa-instagram"></i></a>
+                    <p ngbTooltip="Click to Open {{user.firstName}} {{user.lastName}} Page" (click)="showUser(user.id)">
+                      <button (click)="showUser(user.id)">Contact</button></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pagination-controls class="d-flex justify-content-center" style="font-size: 22px"
+              (pageChange)="page = $event" directionLinks="true" autoHide="true" responsive="true"
+              previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+            </pagination-controls>
+            <hr />
+            <pre>Current page: {{ page }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

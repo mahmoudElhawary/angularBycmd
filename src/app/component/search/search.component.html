@@ -1,0 +1,98 @@
+<!-- product category -->
+<section id="aa-product-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-product-details-area">
+          <!-- Related product -->
+          <div class="aa-product-related-item">
+            <div class="container">
+              <div>
+                <div *ngIf="searchValue" style="text-align: center">
+                  <div class="accordion" id="accordionExample">
+                    <div class="card" *ngFor="let product of products$ | async">
+                      <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                          <div class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            {{product.productName}}
+                          </div>
+                        </h2>
+                      </div>
+
+                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample" ngbTooltip="click to show more Details about this product"
+                        (click)="view(product.productId)">
+                        <div class="card-body" style="cursor: pointer">
+                          <div class="row">
+                            <div class="col-md-8">
+                              <div ngbTooltip="Product Name">productName : {{product.productName}}</div>
+                              <hr>
+                              <div ngbTooltip="Product Description">productDescription : {{product.productDescription}}
+                              </div>
+                              <hr>
+                              <div ngbTooltip="Product Summary">productSummary : {{product.productSummary}}</div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-md-6" ngbTooltip="Product Condition">
+                                  product Condition : {{product.productCondition}}
+                                </div>
+                                <div ngbTooltip="Product Rating" class="col-md-6">
+                                  <ngb-rating [(rate)]="product.rating" [readonly]="true">
+                                    <ng-template let-fill="fill" let-index="index">
+                                      <span class="star" [class.filled]="fill === 100"
+                                        [class.bad]="index < 3">&#9733;</span>
+                                    </ng-template>
+                                  </ngb-rating>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <p ngbTooltip="Product defaultSize" class="col-md-4">{{product.defaultSize}}</p>
+                                <p ngbTooltip="Product Price" class="col-md-4">{{product.productPrice}} LE</p>
+                                <p ngbTooltip="Product Date" class="col-md-4">{{product.productDate | date}}</p>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <p ngbTooltip="Product Seel Number" class="col-md-3">{{product.sellCount}}</p>
+                                <p ngbTooltip="Product Likes Number" class="col-md-3">{{product.likes}}</p>
+                                <p ngbTooltip="Product Views Number" class="col-md-3">{{product.productViews}}</p>
+                                <p ngbTooltip="Product Search Number" class="col-md-3">{{product.searchCount}}</p>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-md-4" ngbTooltip="Add this Product to your Cart">
+                                  <button class="button" (click)="addToCart(product)">Add To Cart</button>
+                                </div>
+                                <div class="col-md-2" ngbTooltip="click to view more details about this product">
+                                  <button class="button" (click)="view(product.productId)">View</button>
+                                </div>
+                                <div class="col-md-4" ngbTooltip="click to view more related Products">
+                                  <button class="button"
+                                    (click)="viewBySubCategory(product.productCategory.subCategoryName)">Related
+                                    Products</button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <img *ngIf="product.productPhoto" ngbTooltip="click to view this product"
+                                (click)="view(product.productId)"
+                                [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                class="bd-placeholder-img card-img-top" style="width: 100% ;height: 400px;"
+                                aria-label="Placeholder: Thumbnail" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / product category -->

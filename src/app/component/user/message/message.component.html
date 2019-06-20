@@ -1,0 +1,66 @@
+<!-- start contact section -->
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="row">
+            <div class="col-md-8">
+              <h3>{{messageFrom.firstName}} Chat Room</h3>
+            </div>
+            <div class="col-md-4">
+              <button (click)="showUserPage(messageFrom.id)" class="btn btn-info"
+                ngbTooltip="Click to Open {{messageFrom.firstName}} {{messageFrom.lastName}} Home Page">Back To
+                {{messageFrom.firstName}} {{messageFrom.lastName}}</button>
+            </div>
+          </div>
+          <hr>
+          <div class="aa-contact-address">
+            <div class="row">
+              <div class="col-md-12">
+                <h5 ngbTooltip="Click to Open {{user.firstName}} {{user.lastName}} Page" style="cursor: pointer"
+                  (click)="showUserPage(user.id)"><span style="color: violet">{{messageFrom.firstName}} {{messageFrom.lastName}} Messages</span> Messages</h5>
+                <hr>
+                <div class="scroll" (mouseenter)="getUserMessages()">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-action" *ngFor="let message of userMessages$ | async">
+                      <div class="row">
+                        <div class="col-md-6">
+                          {{message.messages}}
+                        </div>
+                        <div class="col-md-4">
+                          {{message.messageDate | date:'short'}}
+                        </div>
+                        <div class="col-md-2">
+                          <button (click)="deleteMessage(message.userMessagesId)"
+                            ngbTooltip="Click to Delete this Message" class="btn btn-danger">Delete</button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <form [formGroup]="MessageForm">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input ngbTooltip="Press Enter to Send this Message" class="form-control" formControlName="messages"
+                      placeholder="Message" (keyup.enter)="sendMessage(MessageForm)" />
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button ngbTooltip="Click to Send this Message" [disabled]="!MessageForm.valid"
+                    class="btn btn-primary" (click)="sendMessage(MessageForm)">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

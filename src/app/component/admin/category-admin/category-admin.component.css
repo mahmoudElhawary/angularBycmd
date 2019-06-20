@@ -1,0 +1,6 @@
+button {
+  background: rgb(190, 50, 50);
+}
+button:hover {
+  opacity: .7;
+}

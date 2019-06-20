@@ -1,0 +1,29 @@
+.star {
+  font-size: 2.3rem;
+  color: #f30c0c;
+}
+.filled {
+  color: #ffcb1e;
+}
+/* .bad {
+  color: #ded2b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+} */
+.seq {
+  position: relative;
+  /*background: #D9D9D9 url("../images/bg-sequence.jpg") no-repeat;*/
+  background-position: 0% 100%;
+  background-size: cover;
+  /* Dimensions */
+  height: 400px;
+  width: 100%;
+  /*max-width: 1280px;*/
+  max-width: 100%;
+  /* Hide anything that goes beyond the boundaries of the Sequence container */
+  overflow: hidden;
+  /* Center the Sequence container on the page */
+  margin: 0 auto;
+  padding: 0;
+}

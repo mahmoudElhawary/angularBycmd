@@ -1,0 +1,174 @@
+<!-- product category -->
+<section id="aa-product-details" *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div style="margin-top: 5%"></div>
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table">
+              <tbody>
+                <tr ngbTooltip="Product Name">
+                  <td>product Name</td>
+                  <td>{{product.productName}}</td>
+                </tr>
+                <tr ngbTooltip="Product main Category">
+                  <td>product main Category</td>
+                  <td>{{product.productCategory.mainCategoryName}}</td>
+                </tr>
+                <tr ngbTooltip="Product Sub Category">
+                  <td>product Sub Category</td>
+                  <td>{{product.productCategory.subCategoryName}}</td>
+                </tr>
+                <tr ngbTooltip="Product Price">
+                  <td>product Price</td>
+                  <td>{{product.productPrice}} LE</td>
+                </tr>
+                <tr ngbTooltip="Product size">
+                  <td>product Size</td>
+                  <td>{{product.size}}</td>
+                </tr>
+                <tr ngbTooltip="Product defaultSize">
+                  <td>product Defualt Size</td>
+                  <td>{{product.defaultSize}}</td>
+                </tr>
+                <tr ngbTooltip="Product Summary">
+                  <td>Product Summary</td>
+                  <td>{{product.productSummary}}</td>
+                </tr>
+                <tr ngbTooltip="Product Description">
+                  <td>Product Description</td>
+                  <td>{{product.productDescription}}</td>
+                </tr>
+                <tr ngbTooltip="Product Date">
+                  <td>Product Date</td>
+                  <td>{{product.productDate}}</td>
+                </tr>
+                <tr ngbTooltip="Product color">
+                  <td>Product color</td>
+                  <td>{{product.color}}</td>
+                </tr>
+                <tr ngbTooltip="Product Condition">
+                  <td>Product Condition</td>
+                  <td>{{product.productCondition}}</td>
+                </tr>
+                <tr ngbTooltip="Product Views">
+                  <td>Product Views</td>
+                  <td>{{product.productViews}} Views</td>
+                </tr>
+                <tr ngbTooltip="Product search Number">
+                  <td>Product search Number</td>
+                  <td>{{product.searchCount}} Searches</td>
+                </tr>
+                <tr ngbTooltip="Product Sell Number">
+                  <td>Product Sell Number</td>
+                  <td>{{product.sellCount}} Times</td>
+                </tr>
+                <tr ngbTooltip="Product Rate">
+                  <td>Product Rate</td>
+                  <td>
+                    <ngb-rating style="font-size: 20px;" [(rate)]="product.rating" [readonly]="true"
+                      (rateChange)="rateProduct(product)">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                      </ng-template>
+                    </ngb-rating>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <img [src]="'data:Image/jpg;base64,' + product.productPhoto"
+              style="width: 100% ; height: 100%; border: 1px solid rgb(138, 155, 155)" />
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" ngbTooltip="Add this Product to your Cart" class="aa-add-to-cart-btn"
+                (click)="addToCart(product)">Add To Cart </button>
+              <button type="button" ngbTooltip="Show Some Related Product" class="aa-add-to-cart-btn"
+                (click)="viewBySubCategory(product.productCategory.subCategoryName)">Related Product</button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row">
+          <div class="col-md-4" ngbTooltip="Please Rate this Product">
+            <h2>
+              Rate this Product
+            </h2>
+          </div>
+          <div class="col-md-5" ngbTooltip="click to Rate">
+            <ngb-rating style="font-size: 20px;" [(rate)]="currentRate" [readonly]="false"
+              (rateChange)="rateProduct(product)">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+          <div class="col-md-3" *ngIf="rating">
+            <p class="alert alert-success">Thanks For Rating</p>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-9" ngbTooltip="Please make a comment on this Product">
+                <h3>Make a Comment</h3>
+              </div>
+              <div class="col-md-3" ngbTooltip="Please clicke here to make your comment">
+                <a style="cursor: pointer;font-size: 30px;margin: 7px ;" class="fas fa-comment-dots" role="button"
+                  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                  aria-controls="collapseExample">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <div class="alert alert-light" style="border-bottom: 1px solid tomato" role="alert"
+                  *ngFor="let comment of comments$ | async ; let i = index">
+                  <div class="row">
+                    <div class="col-md-4" (click)="showUserPage(comment.userId)"
+                      ngbTooltip="click to open {{comment.user.firstName}} Page">
+                      <div style="background: rgb(223, 223, 212) ; border-radius: 10px" *ngIf="comment.user">
+                        {{comment.user.firstName}} {{comment.user.lastName}}</div>
+                    </div>
+                    <div class="col-md-5">
+                      <div>{{comment.commentCotents }}</div>
+                    </div>
+                    <div class="col-md-3">
+                      <div>{{comment.commentDate | date:'short' }}</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- product comment list -->
+                <div>
+                  <form [formGroup]="commentForm">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="make an comment" aria-label="make an comment"
+                        aria-describedby="button-addon2" formControlName="commentCotents"
+                        (keyup.enter)="commentProduct(product)" ngbTooltip="Please press enter to make your comment">
+                      <div class="input-group-append">
+                        <button [disabled]="!commentForm.valid" (click)="commentProduct(product)" type="submit"
+                          class="btn btn-primary" type="button" id="button-addon2"
+                          ngbTooltip="Please click to make your comment">Comment
+                          Now</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom: 2%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / product category -->

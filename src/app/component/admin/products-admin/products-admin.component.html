@@ -1,0 +1,367 @@
+<!-- start contact section -->
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <div class="aa-contact-address">
+            <hr>
+            <h2 ngbTooltip="Products Page">Product Page</h2>
+            <hr>
+            <form class="comments-form contact-form" [formGroup]="productForm">
+              <div formGroupName="productCategory">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="Select Product Main Category">
+                      <label for="mainCategoryName">Main Product Category*:</label>
+                      <select name="mainCategoryName" id="mainCategoryName1" formControlName="mainCategoryName"
+                        class="form-control" [(ngModel)]="selectedOption" (change)="getSelectedOptionText($event)">
+                        <option value="">select Main Category Name</option>
+                        <option *ngFor="let Category of (mainCategories$ | async)" [value]="Category">{{ Category }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="Select Product Sub Category">
+                      <label for="subCategoryName">sub Product Category*:</label>
+                      <select name="subCategoryName" id="subCategoryName" formControlName="subCategoryName"
+                        class="form-control">
+                        <option value="">select sub Category Name</option>
+                        <option [value]="Category.subCategoryName" *ngFor="let Category of (subCategories$ | async)">
+                          {{ Category.subCategoryName }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div *ngIf="update" class="alert alert-info">you Must Select a Photo The Old One or a new product
+                  Photo</div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Select Product Image">
+                    <label for="password">product Photo*:</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="image/*" style="height: 100%;"
+                      (change)="onSelectFile($event)" required />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Select Product Color">
+                    <label for="name">color*:</label>
+                    <input type="color" class="form-control" id="color" name="color" placeholder="color"
+                      formControlName="color" />
+                    <div class="alert alert-danger" *ngIf="
+                        productForm.controls.color.errors &&
+                        (productForm.controls.color.touched ||
+                          productForm.controls.color.dirty)
+                      ">
+                      <div *ngIf="productForm.hasError('required', 'color')">
+                        color* is required
+                      </div>
+                      <div *ngIf="productForm.hasError('minlength', 'color')">
+                        color is minlength 5
+                      </div>
+                      <div *ngIf="productForm.hasError('maxlength', 'color')">
+                        color is maxlength 15
+                      </div>
+                      <div *ngIf="productForm.hasError('pattern', 'color')">
+                        color must like this mahmoud
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product Name">
+                    <label for="name">Product Name*:</label>
+                    <input type="text" class="form-control" id="productName" name="productName"
+                      placeholder="productName" formControlName="productName" />
+                    <div class="alert alert-danger" *ngIf="
+                        productForm.controls.productName.errors &&
+                        (productForm.controls.productName.touched ||
+                          productForm.controls.productName.dirty)
+                      ">
+                      <div *ngIf="productForm.hasError('required', 'productName')">
+                        productName* is required
+                      </div>
+                      <div *ngIf="productForm.hasError('minlength', 'productName')">
+                        productName is minlength 5
+                      </div>
+                      <div *ngIf="productForm.hasError('maxlength', 'productName')">
+                        productName is maxlength 15
+                      </div>
+                      <div *ngIf="productForm.hasError('pattern', 'productName')">
+                        productName must like this mahmoud
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product Price">
+                    <label for="productPrice">product Price*:</label>
+                    <input type="number" class="form-control" id="productPrice" name="productPrice"
+                      placeholder="productPrice" formControlName="productPrice" />
+                    <div class="alert alert-danger" *ngIf="
+                        productForm.controls.productPrice.errors &&
+                        (productForm.controls.productPrice.touched ||
+                          productForm.controls.productPrice.dirty)
+                      ">
+                      <div *ngIf="productForm.hasError('required', 'productPrice')">
+                        productPrice* is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product Size">
+                    <label for="name">size*:</label>
+                    <input type="number" class="form-control" id="size" name="size" placeholder="size"
+                      formControlName="size" />
+                    <div class="alert alert-danger" *ngIf="
+                        productForm.controls.size.errors &&
+                        (productForm.controls.size.touched ||
+                          productForm.controls.size.dirty)
+                      ">
+                      <div *ngIf="productForm.hasError('required', 'size')">
+                        size* is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Select Product default Size">
+                    <label for="defaultSize">defaultSize*:</label>
+                    <select class="form-control" id="defaultSize" name="defaultSize" placeholder="defaultSize"
+                      formControlName="defaultSize">
+                      <option value="">select product size</option>
+                      <option value="small">small</option>
+                      <option value="medium">medium</option>
+                      <option value="larg">larg</option>
+                      <option value="x-larg">x-larg</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product ">
+                    <label for="quantity">quantity*:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity"
+                      formControlName="quantity" />
+                    <div class="alert alert-danger" *ngIf="
+                        productForm.controls.quantity.errors &&
+                        (productForm.controls.quantity.touched ||
+                          productForm.controls.quantity.dirty)
+                      ">
+                      <div *ngIf="productForm.hasError('required', 'quantity')">
+                        quantity* is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Select Product Condition">
+                    <label for="name">productCondition*:</label>
+                    <select class="form-control" id="productCondition" name="productCondition"
+                      placeholder="productCondition" formControlName="productCondition">
+                      <option value="">select product Condition</option>
+                      <option value="available">Available</option>
+                      <option value="sold-out">sold-out</option>
+                      <option value="hot">Hot</option>
+                      <option value="sale">Sale</option>
+                      <option value="small">Small</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product Summary">
+                    <label for="productSummary">product Summary*:</label>
+                    <textarea class="form-control" formControlName="productSummary" rows="3"
+                      placeholder="productSummary"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="Enter Product Description">
+                    <label for="productDescription">product Description*:</label>
+                    <textarea class="form-control" formControlName="productDescription" rows="3"
+                      placeholder="productDescription"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group" ngbTooltip="Select Product Appearance">
+                    <label for="isSlider">Only For Slider</label>
+                    <select class="form-control" formControlName="isSlider">
+                      <option value="">select your openion</option>
+                      <option value="true">Only For Slider</option>
+                      <option value="false">Ordinary Product</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button [disabled]="!productForm.valid"
+                (click)="product.productId == null ? saveProduct(productForm) : updateProduct(productForm)"
+                class="btn btn-primary">
+                {{product.productId == null ? 'Create Product' : 'Update Product'}}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <h2>All Products</h2>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>product Name</th>
+                  <th>size</th>
+                  <th>defaultSize</th>
+                  <th>quantity</th>
+                  <th>color</th>
+                  <th>productSummary</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{ product.productName }}</td>
+                  <td>{{ product.size }}</td>
+                  <td>{{ product.defaultSize }}</td>
+                  <td>{{ product.quantity }}</td>
+                  <td>{{ product.color }}</td>
+                  <td>{{ product.productSummary }}</td>
+
+                  <td>
+                    <div style="margin-bottom: 5px">
+                      <button class="btn btn-primary" (click)="SetFormValue(product.productId)">
+                        Update
+                      </button>
+                    </div>
+                    <div>
+                      <div>
+                        <button class="btn btn-danger" (click)="deleteProduct(product)">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <h2>All Products</h2>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>productDescription</th>
+                  <th>productDate</th>
+                  <th>productViews</th>
+                  <th>productPrice</th>
+                  <th>productCondition</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{ product.productDescription }}</td>
+                  <td>{{ product.productDate }}</td>
+                  <td>{{ product.productViews }}</td>
+                  <td>{{ product.productPrice }}</td>
+                  <td>{{ product.productCondition }}</td>
+                  <td>
+                    <div style="margin-bottom: 5px">
+                      <button class="btn btn-primary" (click)="SetFormValue(product.productId)">
+                        Update
+                      </button>
+                    </div>
+                    <div>
+                      <div>
+                        <button class="btn btn-danger" (click)="deleteProduct(product)">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <h2>All Products</h2>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>product Category</th>
+                  <th>product Category</th>
+                  <th>product Image</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{ product.productCategory.mainCategoryName }}</td>
+                  <td>{{ product.productCategory.subCategoryName }}</td>
+                  <td><img [src]="'data:Image/jpg;base64,' + product.productPhoto"
+                      style="width: 300px ; height: 300px" /></td>
+                  <td>
+                    <div style="margin-bottom: 5px">
+                      <button class="btn btn-primary" (click)="SetFormValue(product.productId)">
+                        Update
+                      </button>
+                    </div>
+                    <div>
+                      <button class="btn btn-danger" (click)="deleteProduct(product)">
+                        Delete
+                      </button>
+                    </div>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

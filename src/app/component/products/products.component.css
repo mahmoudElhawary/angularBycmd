@@ -1,0 +1,23 @@
+.example-small-box,
+.example-large-box {
+  align-items: center;
+}
+mat-tab
+.tab {
+  font-size: 40px ;
+  background: rgb(151, 143, 108);
+  border-radius: 10px ;
+  color: #f30c0c ;
+}
+
+.example-large-box {
+  height: 500px;
+  width: 900px;
+}
+.star {
+  font-size: 1.8 rem;
+  color: #f30c0c;
+}
+.filled {
+  color: #ffcb1e;
+}

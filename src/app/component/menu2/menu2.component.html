@@ -1,0 +1,24 @@
+<nav id="nav">
+    <ul>
+      <li ngbTooltip="Please click here to go Home page">
+        <a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
+      </li>
+      <li ngbTooltip="Please click here to go allCategories page">
+        <a [routerLink]="['/allCategories']" routerLinkActive="router-link-active">All Categories</a>
+      </li>
+      <li *ngFor="let Category of mainCategories$ | async">
+        <a (mouseover)="getSubs(Category)" style="cursor: pointer;">{{ Category }} &raquo;</a>
+        <ul>
+          <li *ngFor="let Category of subCategories$ | async">
+            <a style="cursor: pointer;"
+               [routerLink]="['/products', Category.subCategoryName]">{{ Category.subCategoryName }}</a>
+          </li>
+          <!-- (click)="viewBySubCategory(Category.subCategoryName)"
+          routerLink="/products/{{Category.subCategoryName}}"  -->
+        </ul>
+      </li>
+      <li ngbTooltip="Please click here to go Contact us page">
+        <a [routerLink]="['/contactusPage']" routerLinkActive="router-link-active">Contact Us</a>
+      </li>
+    </ul>
+  </nav>

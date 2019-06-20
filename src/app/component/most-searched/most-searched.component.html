@@ -1,0 +1,42 @@
+<hr />
+<section id="aa-product">
+  <div class="container">
+    <h2>Most Searched Products</h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-4"
+        *ngFor="let product of searchedProducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+        <div class="card">
+          <img ngbTooltip="click to view more Details about {{product.productName}}" (click)="view(product.productId)"
+            [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="product image"
+            style="width:100% ; height: 300px;">
+          <h1 ngbTooltip="Product Name">{{product.productName}}</h1>
+          <p ngbTooltip="ProductPrice " class="price">{{product.productPrice}} LE</p>
+          <p ngbTooltip="Product Description">{{product.productDescription}}</p>
+          <p ngbTooltip="Product Searched Number">{{product.searchCount}} Searches</p>
+          <p ngbTooltip="Product Rating">
+            <ngb-rating [(rate)]="product.rating">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </p>
+          <div class="row">
+            <p ngbTooltip="Product Seel Number" class="col-md-4">{{product.sellCount}}</p>
+            <p ngbTooltip="Product Likes Number" class="col-md-4">{{product.likes}}</p>
+            <p ngbTooltip="Product Views Number" class="col-md-4">{{product.productViews}}</p>
+          </div>
+          <p><button ngbTooltip="Add this Product to your Cart" (click)="addToCart(product)">Add to Cart</button></p>
+        </div>
+      </div>
+      <div style="margin: 15px"></div>
+      <div style="margin:0 auto">
+        <pagination-controls class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+          directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+          screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</section>

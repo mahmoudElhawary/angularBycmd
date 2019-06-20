@@ -1,0 +1,38 @@
+<!-- start contact section -->
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <h2>All Orders</h2>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Carts</th>
+                  <th scope="col">User Address</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders$ | async">
+                  <td> <button ngbTooltip="click to show Orders Products" style="width: 100%" class="btn btn-primary"
+                      [routerLink]="['/adminpage/users-admin/orders-admin/admin/orders/details', order.user.id ]"
+                      routerLinkActive="router-link-active">Cart
+                      Containers</button></td>
+                  <td> <button ngbTooltip="click to show Orders User Address" style="width: 100%"
+                      class="btn btn-primary"
+                      [routerLink]="['/adminpage/users-admin/orders-admin/admin/orders/Address', order.user.id]"
+                      routerLinkActive="router-link-active">User Address</button>
+                  </td>
+                  <td>{{ order.createDate | date:'short' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

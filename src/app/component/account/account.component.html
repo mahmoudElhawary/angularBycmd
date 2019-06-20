@@ -1,0 +1,645 @@
+<!-- start contact section -->
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <div id="user-profile-2" class="user-profile">
+          <div class="tabbable">
+            <ul class="nav nav-tabs padding-18">
+              <li class="active" ngbTooltip="Profile Page">
+                <a data-toggle="tab" href="#home">
+                  <i class="green ace-icon fa fa-user bigger-120"></i>
+                  Profile
+                </a>
+              </li>
+
+              <li class="active" ngbTooltip="Products Page">
+                <a data-toggle="tab" href="#orders">
+                  <i class="pink ace-icon fa fa-picture-o bigger-120"></i>
+                  Orders
+                </a>
+              </li>
+              <li class="active" ngbTooltip="Products Page">
+                <a data-toggle="tab" href="#myProducts">
+                  <i class="pink ace-icon fa fa-picture-o bigger-120"></i>
+                  Products
+                </a>
+              </li>
+              <li class="active" ngbTooltip="Manage Products Page">
+                <a data-toggle="tab" href="#manageProducts">
+                  <i class="pink ace-icon fa fa-check bigger-120"></i>
+                  Manage Products
+                </a>
+              </li>
+              <li class="active" ngbTooltip="Message Page">
+                <a data-toggle="tab" href="#Messages">
+                  <i class="pink ace-icon fa fa-pencil-square-o bigger-120"></i>
+                  Messages
+                </a>
+              </li>
+            </ul>
+
+            <div class="tab-content no-border padding-24">
+              <div id="home" class="tab-pane in active">
+                <div class="row">
+                  <div class="col-md-5">
+                    <span class="profile-picture" ngbTooltip="{{user.firstName}} image">
+                      <img class="editable img-responsive" alt=" Avatar" id="avatar2"
+                        [src]="'data:Image/jpg;base64,' + user.userPhoto" style="width: 250px ; height: 300px;">
+                    </span>
+                    <div class="space space-4"></div>
+                    <a style="cursor: pointer;width: 260px" class="btn btn-sm btn-block btn-primary">
+                      <input type="file" class="form-control" id="file" name="file" accept="image/*"
+                        style="height: 100%;" (change)="onSelectUserFile($event)" required />
+                    </a>
+                    <button style="cursor: pointer;width: 260px" class="btn btn-sm btn-block btn-primary"
+                      (click)="updateImage(user.id)">Update Photo</button>
+                  </div><!-- /.col -->
+
+                  <div class="col-md-7" ngbTooltip="Name">
+                    <h4 class="blue">
+                      <span class="middle">{{user.firstName}} {{user.lastName}}</span>
+
+                      <span class="label label-purple arrowed-in-right">
+                        <i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
+                        online
+                      </span>
+                    </h4>
+
+                    <div class="profile-user-info">
+                      <div class="profile-info-row" ngbTooltip="Email">
+                        <div class="profile-info-name">Email </div>
+                        <div class="profile-info-value">
+                          <span>{{user.email}}</span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row" ngbTooltip="Address">
+                        <div class="profile-info-name">Address </div>
+                        <div class="profile-info-value">
+                          <i class="fa fa-map-marker light-orange bigger-110"></i>
+                          <span>{{user.userAdresses.address}}</span>
+                          <span>{{user.userAdresses.country}}</span>
+                          <span>{{user.userAdresses.city}}</span>
+                          <span>{{user.userAdresses.state}}</span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row" ngbTooltip="Age">
+                        <div class="profile-info-name"> Age </div>
+                        <div class="profile-info-value">
+                          <span>{{user.age}}</span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row" ngbTooltip="Joining Date">
+                        <div class="profile-info-name"> Joined </div>
+                        <div class="profile-info-value">
+                          <span>{{user.createdDate | date: 'shortDate'}}</span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Last Online </div>
+                        <div class="profile-info-value">
+                          <span>3 hours ago</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="hr hr-8 dotted"></div>
+                    <div class="profile-user-info">
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.facebook">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-facebook-square bigger-150 blue"></i>
+                        </div>
+                        <div class="profile-info-value" ngbTooltip="{{user.firstName}} FaceBook">
+                          <a href="{{user.userSocialMedias.facebook}}">Find me on Facebook</a>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.twitter"
+                        ngbTooltip="{{user.firstName}} Twitter">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                        </div>
+                        <div class="profile-info-value">
+                          <a href="{{user.userSocialMedias.twitter}}">Follow me on Twitter</a>
+                        </div>
+                      </div>
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.githup"
+                        ngbTooltip="{{user.firstName}} Githup">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-fw fa-github bigger-150 light-blue"></i>
+                        </div>
+                        <div class="profile-info-value">
+                          <a href="{{user.userSocialMedias.githup}}">Follow me on Githup</a>
+                        </div>
+                      </div>
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.googlePlus"
+                        ngbTooltip="{{user.firstName}} GooglePlus">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-google-plus-square bigger-150 light-blue"></i>
+                        </div>
+                        <div class="profile-info-value">
+                          <a href="{{user.userSocialMedias.googlePlus}}">Follow me on GooglePlus</a>
+                        </div>
+                      </div>
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.instagram"
+                        ngbTooltip="{{user.firstName}} Instagram">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-instagram bigger-150 light-blue"></i>
+                        </div>
+                        <div class="profile-info-value">
+                          <a href="{{user.userSocialMedias.instagram}}">Follow me on Instagram</a>
+                        </div>
+                      </div>
+                      <div class="profile-info-row" *ngIf="user.userSocialMedias.linkedIn"
+                        ngbTooltip="{{user.firstName}} linkedIn">
+                        <div class="profile-info-name">
+                          <i class="middle ace-icon fa fa-linked-In bigger-150 light-blue"></i>
+                        </div>
+                        <div class="profile-info-value">
+                          <a href="{{user.userSocialMedias.linkedIn}}">Follow me on linkedIn</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /.col -->
+                </div><!-- /.row -->
+              </div><!-- /#home -->
+              <div id="orders" class="tab-pane">
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <section id="aa-contact">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="aa-contact-area">
+                              <!-- Contact address -->
+                              <div class="aa-contact-address">
+                                <h2>All Products</h2>
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th>product Name</th>
+                                      <th>size</th>
+                                      <th>defaultSize</th>
+                                      <th>quantity</th>
+                                      <th>color</th>
+                                      <th>productSummary</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let order of orders$ | async">
+                                      <td>{{ order.createDate | date:'short' }}</td>
+                                      <td>{{ product.size }}</td>
+                                      <td>{{ product.defaultSize }}</td>
+                                      <td>{{ product.quantity }}</td>
+                                      <td>{{ product.color }}</td>
+                                      <td>{{ product.productSummary }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div><!-- /#pictures -->
+              <div id="myProducts" class="tab-pane">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div style="text-align: center" *ngIf="!products$">
+                      <h3>No Products is Published yet ....</h3>
+                    </div>
+                    <ul class="ace-thumbnails">
+                      <li *ngFor="let product of products | paginate: { itemsPerPage: 4, currentPage: page }">
+                        <a ngbTooltip="{{product.productName}}" data-rel="colorbox">
+                          <img style="width: 450px ; height: 350px;" alt="150x150"
+                            [src]="'data:Image/jpg;base64,' + product.productPhoto">
+                          <div class="text">
+                            <div class="inner">{{product.productName}}</div>
+                          </div>
+                        </a>
+                        <div class="tools tools-bottom">
+                          <a ngbTooltip="show this product" style="cursor: pointer"
+                            (click)="getProduct(product.userProductsId)">
+                            <i class="ace-icon fa fa-link"></i>
+                          </a>
+                          <a ngbTooltip="show this product" style="cursor: pointer">
+                            <i class="ace-icon fa fa-paperclip"></i>
+                          </a>
+                          <a ngbTooltip="show this product" style="cursor: pointer">
+                            <i class="ace-icon fa fa-pencil"></i>
+                          </a>
+                          <a ngbTooltip="delete this product" style="cursor: pointer"
+                            (click)="deleteProduct(product.userProductsId)">
+                            <i class="ace-icon fa fa-times red"></i>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+                <pagination-controls class="d-flex justify-content-center"
+                  style="font-size: 22px ; border-radius: 10% ; border: solid 1px violet" (pageChange)="page = $event"
+                  directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next"
+                  screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                  screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+              </div><!-- /#pictures -->
+              <div id="manageProducts" class="tab-pane">
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- product category -->
+                    <section id="aa-product-details">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <br>
+                            <hr>
+                            <form class="comments-form contact-form" [formGroup]="productForm">
+                              <div formGroupName="productCategory">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group" ngbTooltip="Select Product Main Category">
+                                      <label for="mainCategoryName">Main Product Category*:</label>
+                                      <select name="mainCategoryName" id="mainCategoryName1"
+                                        formControlName="mainCategoryName" class="form-control"
+                                        [(ngModel)]="selectedOption" (change)="getSelectedOptionText($event)">
+                                        <option value="">select Main Category Name</option>
+                                        <option *ngFor="let Category of (mainCategories$ | async)" [value]="Category">
+                                          {{ Category }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group" ngbTooltip="Select Product Sub Category">
+                                      <label for="subCategoryName">sub Product Category*:</label>
+                                      <select name="subCategoryName" id="subCategoryName"
+                                        formControlName="subCategoryName" class="form-control">
+                                        <option value="">select sub Category Name</option>
+                                        <option [value]="Category.subCategoryName"
+                                          *ngFor="let Category of (subCategories$ | async)">
+                                          {{ Category.subCategoryName }}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div *ngIf="update" class="alert alert-info">you Must Select a Photo The Old One or a
+                                  new product
+                                  Photo</div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Select Product Image">
+                                    <label for="password">product Photo*:</label>
+                                    <input type="file" class="form-control" id="file" name="file" accept="image/*"
+                                      style="height: 100%;" (change)="onSelectFile($event)" required />
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Select Product Color">
+                                    <label for="name">color*:</label>
+                                    <input type="color" class="form-control" id="color" name="color" placeholder="color"
+                                      formControlName="color" />
+                                    <div class="alert alert-danger" *ngIf="
+                                          productForm.controls.color.errors &&
+                                          (productForm.controls.color.touched ||
+                                            productForm.controls.color.dirty)
+                                        ">
+                                      <div *ngIf="productForm.hasError('required', 'color')">
+                                        color* is required
+                                      </div>
+                                      <div *ngIf="productForm.hasError('minlength', 'color')">
+                                        color is minlength 5
+                                      </div>
+                                      <div *ngIf="productForm.hasError('maxlength', 'color')">
+                                        color is maxlength 15
+                                      </div>
+                                      <div *ngIf="productForm.hasError('pattern', 'color')">
+                                        color must like this mahmoud
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product Name">
+                                    <label for="name">Product Name*:</label>
+                                    <input type="text" class="form-control" id="productName" name="productName"
+                                      placeholder="productName" formControlName="productName" />
+                                    <div class="alert alert-danger" *ngIf="
+                                          productForm.controls.productName.errors &&
+                                          (productForm.controls.productName.touched ||
+                                            productForm.controls.productName.dirty)
+                                        ">
+                                      <div *ngIf="productForm.hasError('required', 'productName')">
+                                        productName* is required
+                                      </div>
+                                      <div *ngIf="productForm.hasError('minlength', 'productName')">
+                                        productName is minlength 5
+                                      </div>
+                                      <div *ngIf="productForm.hasError('maxlength', 'productName')">
+                                        productName is maxlength 15
+                                      </div>
+                                      <div *ngIf="productForm.hasError('pattern', 'productName')">
+                                        productName must like this mahmoud
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product Price">
+                                    <label for="productPrice">product Price*:</label>
+                                    <input type="number" class="form-control" id="productPrice" name="productPrice"
+                                      placeholder="productPrice" formControlName="productPrice" />
+                                    <div class="alert alert-danger" *ngIf="
+                                          productForm.controls.productPrice.errors &&
+                                          (productForm.controls.productPrice.touched ||
+                                            productForm.controls.productPrice.dirty)
+                                        ">
+                                      <div *ngIf="productForm.hasError('required', 'productPrice')">
+                                        productPrice* is required
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product Size">
+                                    <label for="name">size*:</label>
+                                    <input type="number" class="form-control" id="size" name="size" placeholder="size"
+                                      formControlName="size" />
+                                    <div class="alert alert-danger" *ngIf="
+                                          productForm.controls.size.errors &&
+                                          (productForm.controls.size.touched ||
+                                            productForm.controls.size.dirty)
+                                        ">
+                                      <div *ngIf="productForm.hasError('required', 'size')">
+                                        size* is required
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Select Product default Size">
+                                    <label for="defaultSize">defaultSize*:</label>
+                                    <select class="form-control" id="defaultSize" name="defaultSize"
+                                      placeholder="defaultSize" formControlName="defaultSize">
+                                      <option value="">select product size</option>
+                                      <option value="small">small</option>
+                                      <option value="medium">medium</option>
+                                      <option value="larg">larg</option>
+                                      <option value="x-larg">x-larg</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product ">
+                                    <label for="quantity">quantity*:</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity"
+                                      placeholder="quantity" formControlName="quantity" />
+                                    <div class="alert alert-danger" *ngIf="
+                                          productForm.controls.quantity.errors &&
+                                          (productForm.controls.quantity.touched ||
+                                            productForm.controls.quantity.dirty)
+                                        ">
+                                      <div *ngIf="productForm.hasError('required', 'quantity')">
+                                        quantity* is required
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Select Product Condition">
+                                    <label for="name">productCondition*:</label>
+                                    <select class="form-control" id="productCondition" name="productCondition"
+                                      placeholder="productCondition" formControlName="productCondition">
+                                      <option value="">select product Condition</option>
+                                      <option value="available">Available</option>
+                                      <option value="sold-out">sold-out</option>
+                                      <option value="hot">Hot</option>
+                                      <option value="sale">Sale</option>
+                                      <option value="small">Small</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product Summary">
+                                    <label for="productSummary">product Summary*:</label>
+                                    <textarea class="form-control" formControlName="productSummary" rows="3"
+                                      placeholder="productSummary"></textarea>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group" ngbTooltip="Enter Product Description">
+                                    <label for="productDescription">product Description*:</label>
+                                    <textarea class="form-control" formControlName="productDescription" rows="3"
+                                      placeholder="productDescription"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <button [disabled]="!productForm.valid"
+                                (click)="product.userProductsId == null ? saveProduct(productForm) : updateProduct(productForm)"
+                                class="btn btn-primary">
+                                {{product.userProductsId == null ? 'Create Product' : 'Update Product'}}
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- / product category -->
+                    <section id="aa-contact">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="aa-contact-area">
+                              <!-- Contact address -->
+                              <div class="aa-contact-address">
+                                <h2>All Products</h2>
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th>product Name</th>
+                                      <th>size</th>
+                                      <th>defaultSize</th>
+                                      <th>quantity</th>
+                                      <th>color</th>
+                                      <th>productSummary</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let product of products">
+                                      <td>{{ product.productName }}</td>
+                                      <td>{{ product.size }}</td>
+                                      <td>{{ product.defaultSize }}</td>
+                                      <td>{{ product.quantity }}</td>
+                                      <td>{{ product.color }}</td>
+                                      <td>{{ product.productSummary }}</td>
+
+                                      <td>
+                                        <div style="margin-bottom: 5px">
+                                          <button class="btn btn-primary"
+                                            (click)="SetFormValue(product.userProductsId)">
+                                            Update
+                                          </button>
+                                        </div>
+                                        <div>
+                                          <div>
+                                            <button class="btn btn-danger" (click)="deleteProduct(product)">
+                                              Delete
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section id="aa-contact">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="aa-contact-area">
+                              <!-- Contact address -->
+                              <div class="aa-contact-address">
+                                <h2>All Products</h2>
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th>productDescription</th>
+                                      <th>productDate</th>
+                                      <th>productViews</th>
+                                      <th>productPrice</th>
+                                      <th>productCondition</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let product of products">
+                                      <td>{{ product.productDescription }}</td>
+                                      <td>{{ product.productDate }}</td>
+                                      <td>{{ product.productViews }}</td>
+                                      <td>{{ product.productPrice }}</td>
+                                      <td>{{ product.productCondition }}</td>
+                                      <td>
+                                        <div style="margin-bottom: 5px">
+                                          <button class="btn btn-primary"
+                                            (click)="SetFormValue(product.userProductsId)">
+                                            Update
+                                          </button>
+                                        </div>
+                                        <div>
+                                          <div>
+                                            <button class="btn btn-danger" (click)="deleteProduct(product)">
+                                              Delete
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                    <section id="aa-contact">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="aa-contact-area">
+                              <!-- Contact address -->
+                              <div class="aa-contact-address">
+                                <h2>All Products</h2>
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th>product Category</th>
+                                      <th>product Category</th>
+                                      <th>product Image</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let product of products">
+                                      <td>{{ product.productCategory.mainCategoryName }}</td>
+                                      <td>{{ product.productCategory.subCategoryName }}</td>
+                                      <td><img [src]="'data:Image/jpg;base64,' + product.productPhoto"
+                                          style="width: 300px ; height: 300px" /></td>
+                                      <td>
+                                        <div style="margin-bottom: 5px">
+                                          <button class="btn btn-primary"
+                                            (click)="SetFormValue(product.userProductsId)">
+                                            Update
+                                          </button>
+                                        </div>
+                                        <div>
+                                          <button class="btn btn-danger" (click)="deleteProduct(product)">
+                                            Delete
+                                          </button>
+                                        </div>
+
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div><!-- /#pictures -->
+
+              <div id="Messages" class="tab-pane">
+                <div class="row">
+                  <div class="col-md-12">
+                    <section id="aa-contact">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div *ngFor="let message of userMessages$ | async">
+                              {{message.userMessagesId}} -- {{message.messages}} -- {{message.senderId}}
+                              --{{message.messageDate | date: 'short'}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div><!-- /#pictures -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

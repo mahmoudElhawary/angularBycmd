@@ -1,0 +1,252 @@
+<!-- Cart view section -->
+<section id="aa-myaccount">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-myaccount-area">
+          <div class="aa-myaccount-register">
+            <h4 ngbTooltip="Register Page">Register</h4>
+            <form [formGroup]="signupForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="please enter your first Name">
+                    <label for="firstName">First Name*:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="firstName"
+                      formControlName="firstName" />
+                    <div class="alert alert-danger" *ngIf="
+                                signupForm.controls.firstName.errors &&
+                                (signupForm.controls.firstName.touched ||
+                                  signupForm.controls.firstName.dirty)
+                              ">
+                      <div *ngIf="signupForm.hasError('required', 'firstName')">
+                        firstName* is required
+                      </div>
+                      <div *ngIf="signupForm.hasError('minlength', 'firstName')">
+                        firstName is minlength 5
+                      </div>
+                      <div *ngIf="signupForm.hasError('maxlength', 'firstName')">
+                        firstName is maxlength 15
+                      </div>
+                      <div *ngIf="signupForm.hasError('pattern', 'firstName')">
+                        firstName must like this mahmoud
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="please enter your Last Name">
+                    <label for="lastName">Last Name*:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="lastName"
+                      formControlName="lastName" />
+                    <div class="alert alert-danger" *ngIf="
+                                  signupForm.controls.lastName.errors &&
+                                  (signupForm.controls.lastName.touched ||
+                                    signupForm.controls.lastName.dirty)
+                                ">
+                      <div *ngIf="signupForm.hasError('required', 'lastName')">
+                        lastName* is required
+                      </div>
+                      <div *ngIf="signupForm.hasError('minlength', 'lastName')">
+                        lastName is minlength 5
+                      </div>
+                      <div *ngIf="signupForm.hasError('maxlength', 'lastName')">
+                        lastName is maxlength 15
+                      </div>
+                      <div *ngIf="signupForm.hasError('pattern', 'lastName')">
+                        lastName must like this mahmoud
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="please enter your Email Address">
+                    <label for="email">Email address*:</label>
+                    <input type="email" class="form-control" id="email" placeholder="email" name="email"
+                      formControlName="email" />
+                    <div class="alert alert-danger" *ngIf="
+                                signupForm.controls.email.errors &&
+                                (signupForm.controls.email.touched ||
+                                  signupForm.controls.email.dirty)
+                              ">
+                      <div *ngIf="signupForm.hasError('required', 'email')">
+                        email* is required
+                      </div>
+                      <div *ngIf="signupForm.hasError('minlength', 'email')">
+                        email is minlength 8
+                      </div>
+                      <div *ngIf="signupForm.hasError('maxlength', 'email')">
+                        email is maxlength
+                      </div>
+                      <div *ngIf="signupForm.hasError('email', 'email')">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="please enter your Password">
+                    <label for="password">password*:</label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password"
+                      placeholder="password" />
+                    <div class="alert alert-danger" *ngIf="
+                                  signupForm.controls.password.errors &&
+                                  (signupForm.controls.password.touched ||
+                                    signupForm.controls.password.dirty)
+                                ">
+                      <div *ngIf="signupForm.hasError('required', 'password')">
+                        password* is required
+                      </div>
+                      <div *ngIf="signupForm.hasError('pattern', 'password')">
+                        password Must contain at least one number and one uppercase
+                        and lowercase letter, and at least 8 or more characters
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" ngbTooltip="please select your Personal Photo">
+                  <div class="form-group">
+                    <label for="image">User Photo*:</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="image/*" style="height: 100%;"
+                      (change)="onSelectFile($event)" required />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ngbTooltip="please Select your gender">
+                    <label for="gender">gender*:</label>
+                    <select name="gender" id="gender" formControlName="gender" class="form-control">
+                      <option value="">select your gender</option>
+                      <option value="male">Male</option>
+                      <option value="femal">Femal</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group" ngbTooltip="please enter your Age">
+                    <label for="age">Age*:</label>
+                    <input type="text" class="form-control" id="age" name="age" formControlName="age"
+                      placeholder="age" />
+                    <div class="alert alert-danger" *ngIf="
+                                      signupForm.controls.age.errors &&
+                                      (signupForm.controls.age.touched ||
+                                        signupForm.controls.age.dirty)
+                                    ">
+                      <div *ngIf="signupForm.hasError('required', 'age')">
+                        age* is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div formGroupName="userAdresses">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="please enter your Address">
+                      <label for="address">Address (Optional):</label>
+                      <input type="text" class="form-control" id="address" name="address" formControlName="address"
+                        placeholder="address" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="please enter your Country">
+                      <label for="age">country (Optionl):</label>
+                      <input type="text" class="form-control" id="country" name="country" formControlName="country"
+                        placeholder="country" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="please enter your City">
+                      <label for="city">city (Optionl):</label>
+                      <input type="text" class="form-control" id="city" name="city" formControlName="city"
+                        placeholder="city" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" ngbTooltip="please enter your State">
+                      <label for="state">state (Optionl):</label>
+                      <input type="text" class="form-control" id="state" name="state" formControlName="state"
+                        placeholder="state" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div formGroupName="userSocialMedias">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your FaceBook Link">
+                      <label for="facebook">facebook (Optionl):</label>
+                      <input type="text" class="form-control" id="facebook" name="facebook" formControlName="facebook"
+                        placeholder="facebook" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your twitter Link">
+                      <label for="twitter">twitter (Optionl):</label>
+                      <input type="text" class="form-control" id="twitter" name="twitter" formControlName="twitter"
+                        placeholder="twitter" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your githup Link">
+                      <label for="githup">githup (Optionl):</label>
+                      <input type="text" class="form-control" id="githup" name="githup" formControlName="githup"
+                        placeholder="githup" />
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your googlePlus Link">
+                      <label for="googlePlus">googlePlus (Optionl):</label>
+                      <input type="text" class="form-control" id="googlePlus" name="googlePlus"
+                        formControlName="googlePlus" placeholder="googlePlus" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your instagram Link">
+                      <label for="instagram">instagram (Optionl):</label>
+                      <input type="text" class="form-control" id="instagram" name="instagram"
+                        formControlName="instagram" placeholder="instagram" />
+
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group" ngbTooltip="please enter your linkedIn Link">
+                      <label for="linkedIn">linkedIn (Optionl):</label>
+                      <input type="text" class="form-control" id="linkedIn" name="linkedIn" formControlName="linkedIn"
+                        placeholder="linkedIn" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid" (click)="signup(signupForm)">
+                Submit
+              </button>
+            </form>
+            <div class="form-group">
+              <div class="alert alert-secondary" role="alert">
+                <p>
+                  Already have an account?
+                  <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

@@ -1,0 +1,74 @@
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>The Order Detials</h2>
+          </div>
+          <div class="col-md-3">
+            <button ngbTooltip="click to show Orders User Address" style="width: 100%" class="btn btn-primary"
+              [routerLink]="['/adminpage/users-admin/orders-admin/admin/orders/Address', id]"
+              routerLinkActive="router-link-active">User Address</button>
+          </div>
+          <div class="col-md-3">
+            <button style="width: 100%" class="btn btn-info" (click)="back()">back to Orders Page</button>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th ngbTooltip="Product Image">Image</th>
+                    <th ngbTooltip="Product Name">Product Name</th>
+                    <th ngbTooltip="Product Price">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of prodcts ; let i = index">
+                    <td>
+                      <a ngbTooltip="Product Image" style="cursor: pointer;"><img
+                          [src]="'data:Image/jpg;base64,' + item.productPhoto" alt="img"
+                          style="width: 250px ; height: 200px;" /></a>
+                    </td>
+                    <td>
+                      <a ngbTooltip="Product Name" class="aa-cart-title" style="cursor: pointer;">{{
+                      item.productName
+                    }}</a>
+                    </td>
+                    <td ngbTooltip="Product Price">{{ item.productPrice }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Cart Total view -->
+            <!-- <div class="cart-view-total"> -->
+            <div class="row">
+              <div class="col-md-6">
+                <h4 ngbTooltip="Products Price Frome Your Cart">Cart Totals Price</h4>
+              </div>
+              <div class="col-md-6">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th ngbTooltip="Total Price of all products in your cart">Total Price of all products</th>
+                      <td ngbTooltip="Total Price"><span style="font: 25px bold large italic oblique">{{total}}</span>
+                        LE</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

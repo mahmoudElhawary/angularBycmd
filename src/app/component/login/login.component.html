@@ -1,0 +1,70 @@
+<!-- Cart view section -->
+<section id="aa-myaccount">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 ngbTooltip="Login Page">Login</h1>
+        <hr>
+        <div class="alert alert-danger" *ngIf="badPassword" ngbTooltip="please enter your correct password">
+          Email and Password did not Match
+        </div>
+        <form [formGroup]="loginForm">
+          <div class="form-group" ngbTooltip="please enter your Email Address">
+            <label for="email">Email address*:</label>
+            <input type="email" class="form-control" id="email" placeholder="email" name="email"
+              formControlName="email" />
+            <div class="alert alert-danger" *ngIf="
+                    loginForm.controls.email.errors &&
+                    (loginForm.controls.email.touched ||
+                      loginForm.controls.email.dirty)
+                  ">
+              <div *ngIf="loginForm.hasError('required', 'email')">
+                email* is required
+              </div>
+              <div *ngIf="loginForm.hasError('minlength', 'email')">
+                email is minlength 8
+              </div>
+              <div *ngIf="loginForm.hasError('maxlength', 'email')">
+                email is maxlength
+              </div>
+              <div *ngIf="loginForm.hasError('email', 'email')">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+          <div class="form-group" ngbTooltip="please enter your Password">
+            <label for="password">password*:</label>
+            <input type="password" class="form-control" id="password" name="password" formControlName="password"
+              placeholder="password" />
+            <div class="alert alert-danger" *ngIf="
+                    loginForm.controls.password.errors &&
+                    (loginForm.controls.password.touched ||
+                      loginForm.controls.password.dirty)
+                  ">
+              <div *ngIf="loginForm.hasError('required', 'password')">
+                password* is required
+              </div>
+              <div *ngIf="loginForm.hasError('pattern', 'password')">
+                password Must contain at least one number and one uppercase
+                and lowercase letter, and at least 8 or more characters
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid" (click)="login(loginForm)"
+            ngbTooltip="please Click to Login ">
+            Login
+          </button>
+        </form>
+        <div class="form-group" style="margin-top: 10px" ngbTooltip="please click to sign up if you have an email ">
+          <div class="alert alert-secondary" role="alert">
+            <p>
+              Already dont have an account?
+              <a [routerLink]="['/signup']" routerLinkActive="router-link-active">Sign Up</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Cart view section -->

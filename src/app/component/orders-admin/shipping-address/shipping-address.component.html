@@ -1,0 +1,64 @@
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>The User Order Address</h2>
+          </div>
+          <div class="col-md-3">
+            <button ngbTooltip="click to show Orders Products" style="width: 100%" class="btn btn-primary"
+              [routerLink]="['/adminpage/users-admin/orders-admin/admin/orders/details', id ]"
+              routerLinkActive="router-link-active">Cart
+              Containers</button>
+          </div>
+          <div class="col-md-3">
+            <button style="width: 100%" class="btn btn-info" (click)="back()">back to Orders Page</button>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <div class="cart-view-area">
+          <div class="cart-view-table">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th ngbTooltip="Image">full Name</th>
+                    <th ngbTooltip="Name">phone Number</th>
+                    <th ngbTooltip="Address">Address</th>
+                    <th ngbTooltip="City">City</th>
+                    <th ngbTooltip="state">state</th>
+                    <th ngbTooltip="country">country</th>
+                    <th ngbTooltip="zipCode">zipCode</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of address$ | async ; let i = index">
+                    <td>
+                      <a class="aa-cart-title" style="cursor: pointer;">{{
+                              item.fullName
+                            }}</a>
+                    </td>
+                    <td>
+                      <a class="aa-cart-title" style="cursor: pointer;">{{
+                        item.phoneNumber
+                      }}</a>
+                    </td>
+                    <td class="aa-cart-title">{{ item.address }}</td>
+                    <td class="aa-cart-title">{{ item.city }}</td>
+                    <td class="aa-cart-title">{{ item.state }}</td>
+                    <td class="aa-cart-title">{{ item.country }}</td>
+                    <td class="aa-cart-title">{{ item.zipCode }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

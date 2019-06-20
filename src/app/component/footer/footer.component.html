@@ -1,0 +1,128 @@
+<!-- footer -->
+<footer id="aa-footer">
+  <!-- footer bottom -->
+  <div class="aa-footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-top-area">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <h3>POPULAR SEALING</h3>
+                  <ul class="aa-footer-nav">
+                    <li *ngFor="let product of seelinproducts$ | async"
+                      ngbTooltip="click to view more details about {{product.productName}} product">
+                      <a style="cursor: pointer" (click)="view(product.productId)">{{product.productName}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <h3>POPULAR SEARCHES</h3>
+                  <ul class="aa-footer-nav">
+                    <li *ngFor="let product of searchedProducts$ | async"
+                      ngbTooltip="click to view more details about {{product.productName}} product">
+                      <a style="cursor: pointer" (click)="view(product.productId)">{{product.productName}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>MY ACCOUNT</h3>
+                    <ul class="aa-footer-nav">
+                      <li *ngIf="loginUser" ngbTooltip="Click to view Your Acount Page">
+                        <a [routerLink]="['/account']"
+                          routerLinkActive="router-link-active">{{loginUser.user.firstName}}
+                          {{loginUser.user.lastName}}</a>
+                      </li>
+                      <li *ngIf="!loginUser" ngbTooltip="please Log In / Register">
+                        <a [routerLink]="['/login']" routerLinkActive="router-link-active">Log In / Register</a>
+                      </li>
+                      <li ngbTooltip="click to view your Cart Page">
+                        <a [routerLink]="['/cart']" routerLinkActive="router-link-active">My Shopping Cart</a>
+                      </li>
+                      <li ngbTooltip="click to view your wishlists Page">
+                        <a [routerLink]="['/wishlist']" routerLinkActive="router-link-active">Wish Lists</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>SELLING ON GolldenDollar</h3>
+                    <ul class="aa-footer-nav">
+                      <li ngbTooltip="Click to View All Instructiions on our Application">
+                        <a [routerLink]="['/instructions']" routerLinkActive="router-link-active">How it Works</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Contact Us</h3>
+                    <address ngbTooltip="GolldenDollar Full Contacts List">
+                      <p>KOM HAMADA , EGYPT</p>
+                      <p><span class="fa fa-phone"></span>+201152190697</p>
+                      <p>
+                        <span class="fa fa-envelope"></span>saidmahmoud53@gmail.com
+                      </p>
+                    </address>
+                    <div class="aa-footer-social">
+                      <a ngbTooltip="our facebook page" href="https://www.facebook.com/Mahmoud.elhawary62"><span
+                          class="fa fa-facebook"></span></a>
+                      <a ngbTooltip="our twitter page" href="https://twitter.com/elhawarycalc"><span
+                          class="fa fa-twitter"></span></a>
+                      <a ngbTooltip="our google-plus page"
+                        href="https://plus.google.com/u/0/108686549859439134425?tab=kX"><span
+                          class="fa fa-google-plus"></span></a>
+                      <a ngbTooltip="our youtube page" href="https://www.youtube.com/"><span
+                          class="fa fa-youtube"></span></a>
+                      <a ngbTooltip="our linkedin page"
+                        href="https://www.linkedin.com/in/mahmoud-elhawary-45a593125/"><span
+                          class="fa fa-linkedin"></span></a>
+                      <a ngbTooltip="our instagram page" href="https://www.instagram.com/mahmoudelhawary_/"><span
+                          class="fa fa-instagram"></span></a>
+                      <a ngbTooltip="our github page" href="https://github.com/mahmoudElhawary"><span
+                          class="fa fa-github"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer-bottom -->
+  <div class="aa-footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-bottom-area">
+            <p style="cursor: pointer;" ngbTooltip="Mahmoud Elhawary Page">
+              Designed by
+              <a href="https://www.facebook.com/Mahmoud.elhawary62">Mahmoud Saeed Elhawary</a>
+            </p>
+            <div class="aa-footer-payment">
+              <span class="fa fa-cc-mastercard"></span>
+              <span class="fa fa-cc-visa"></span>
+              <span class="fa fa-paypal"></span>
+              <span class="fa fa-cc-discover"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- / footer -->
+<!-- <app-login></app-login> -->

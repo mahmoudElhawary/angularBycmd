@@ -1,0 +1,364 @@
+<hr />
+<section id="aa-product">
+  <div class="container">
+    <hr>
+    <h1 ngbTooltip="Some of the most valued Product ">Featured Product</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <ngb-tabset>
+          <ngb-tab title="Most Rating" ngbTooltip="Most Rating product">
+            <ng-template ngbTabContent>
+              <!-- product category -->
+              <section id="aa-product-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="aa-product-details-area">
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-4"
+                                *ngFor="let product of Ratingproducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card mb-4 shadow-sm">
+                                  <img *ngIf="product.productPhoto" ngbTooltip="product Image"
+                                    [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                    class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                                    aria-label="Placeholder: Thumbnail" />
+                                  <div class="card-body">
+                                    <p class="card-text" ngbTooltip="product Name">productName: {{product.productName}}
+                                    </p>
+                                    <p class="card-text" ngbTooltip="product Price">productPrice:
+                                      {{product.productPrice}} LE</p>
+                                    <p class="card-text" ngbTooltip="product View Number">productViews:
+                                      {{product.productViews}}</p>
+                                    <p class="card-text" ngbTooltip="product Likes Number">productLikes:
+                                      {{product.likes}}</p>
+                                    <p class="card-text" ngbTooltip="product Rating Value">
+                                      <ngb-rating [(rate)]="product.rating">
+                                        <ng-template let-fill="fill" let-index="index">
+                                          <span class="star" [class.filled]="fill === 100"
+                                            [class.bad]="index < 3">&#9733;</span>
+                                        </ng-template>
+                                      </ngb-rating>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="aa-prod-view-bottom">
+                                        <button ngbTooltip="click to show more details about this product" type="button"
+                                          class="aa-add-to-cart-btn" (click)="view(product.productId)">View</button>
+                                        <button ngbTooltip="add this product to your cart" type="button"
+                                          class="aa-add-to-cart-btn"
+                                          (click)="addToCart(product)">Add To
+                                          Card</button>
+                                      </div>
+                                      <small ngbTooltip="product Published date"
+                                        class="text-muted">{{product.productDate | date}}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <pagination-controls ngbTooltip="controls Number of product per Page"
+                              class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+                              directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous"
+                              nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                            <hr />
+                            <pre ngbTooltip="Current product Page Number">Current page: {{ page }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- / product category -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Most View" ngbTooltip="Most View product">
+            <ng-template ngbTabContent>
+              <!-- product category -->
+              <section id="aa-product-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="aa-product-details-area">
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-4"
+                                *ngFor="let product of Viewingproducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card mb-4 shadow-sm">
+                                  <img *ngIf="product.productPhoto" ngbTooltip="product Image"
+                                    [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                    class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                                    aria-label="Placeholder: Thumbnail" />
+                                  <div class="card-body">
+                                    <p class="card-text" ngbTooltip="product Name">productName: {{product.productName}}
+                                    </p>
+                                    <p class="card-text" ngbTooltip="product Price">productPrice:
+                                      {{product.productPrice}} LE</p>
+                                    <p class="card-text" ngbTooltip="product View Number">productViews:
+                                      {{product.productViews}}</p>
+                                    <p class="card-text" ngbTooltip="product Likes Number">productLikes:
+                                      {{product.likes}}</p>
+                                    <p class="card-text" ngbTooltip="product Rating Value">
+                                      <ngb-rating [(rate)]="product.rating">
+                                        <ng-template let-fill="fill" let-index="index">
+                                          <span class="star" [class.filled]="fill === 100"
+                                            [class.bad]="index < 3">&#9733;</span>
+                                        </ng-template>
+                                      </ngb-rating>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="aa-prod-view-bottom">
+                                        <button ngbTooltip="click to show more details about this product" type="button"
+                                          class="aa-add-to-cart-btn" (click)="view(product.productId)">View</button>
+                                        <button ngbTooltip="add this product to your cart" type="button"
+                                          class="aa-add-to-cart-btn"
+                                          (click)="addToCart(product)">Add To
+                                          Card</button>
+                                      </div>
+                                      <small ngbTooltip="product Published date"
+                                        class="text-muted">{{product.productDate | date}}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <pagination-controls ngbTooltip="controls Number of product per Page"
+                              class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+                              directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous"
+                              nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                            <hr />
+                            <pre ngbTooltip="Current product Page Number">Current page: {{ page }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- / product category -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Most Comments" ngbTooltip="Most Comments product">
+            <ng-template ngbTabContent>
+              <!-- product category -->
+              <section id="aa-product-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="aa-product-details-area">
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-4"
+                                *ngFor="let product of commentproducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card mb-4 shadow-sm">
+                                  <img *ngIf="product.productPhoto" ngbTooltip="product Image"
+                                    [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                    class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                                    aria-label="Placeholder: Thumbnail" />
+                                  <div class="card-body">
+                                    <p class="card-text" ngbTooltip="product Name">productName: {{product.productName}}
+                                    </p>
+                                    <p class="card-text" ngbTooltip="product Price">productPrice:
+                                      {{product.productPrice}} LE</p>
+                                    <p class="card-text" ngbTooltip="product View Number">productViews:
+                                      {{product.productViews}}</p>
+                                    <p class="card-text" ngbTooltip="product Likes Number">productLikes:
+                                      {{product.likes}}</p>
+                                    <p class="card-text" ngbTooltip="product Rating Value">
+                                      <ngb-rating [(rate)]="product.rating">
+                                        <ng-template let-fill="fill" let-index="index">
+                                          <span class="star" [class.filled]="fill === 100"
+                                            [class.bad]="index < 3">&#9733;</span>
+                                        </ng-template>
+                                      </ngb-rating>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="aa-prod-view-bottom">
+                                        <button ngbTooltip="click to show more details about this product" type="button"
+                                          class="aa-add-to-cart-btn" (click)="view(product.productId)">View</button>
+                                        <button ngbTooltip="add this product to your cart" type="button"
+                                          class="aa-add-to-cart-btn"
+                                          (click)="addToCart(product)">Add To
+                                          Card</button>
+                                      </div>
+                                      <small ngbTooltip="product Published date"
+                                        class="text-muted">{{product.productDate | date}}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <pagination-controls ngbTooltip="controls Number of product per Page"
+                              class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+                              directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous"
+                              nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                            <hr />
+                            <pre ngbTooltip="Current product Page Number">Current page: {{ page }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- / product category -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Most Seeling" ngbTooltip="Most Seeling product">
+            <ng-template ngbTabContent>
+              <!-- product category -->
+              <section id="aa-product-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="aa-product-details-area">
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-4"
+                                *ngFor="let product of seelinproducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card mb-4 shadow-sm">
+                                  <img *ngIf="product.productPhoto" ngbTooltip="product Image"
+                                    [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                    class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                                    aria-label="Placeholder: Thumbnail" />
+                                  <div class="card-body">
+                                    <p class="card-text" ngbTooltip="product Name">productName: {{product.productName}}
+                                    </p>
+                                    <p class="card-text" ngbTooltip="product Price">productPrice:
+                                      {{product.productPrice}} LE</p>
+                                    <p class="card-text" ngbTooltip="product View Number">productViews:
+                                      {{product.productViews}}</p>
+                                    <p class="card-text" ngbTooltip="product Likes Number">productLikes:
+                                      {{product.likes}}</p>
+                                    <p class="card-text" ngbTooltip="product Rating Value">
+                                      <ngb-rating [(rate)]="product.rating">
+                                        <ng-template let-fill="fill" let-index="index">
+                                          <span class="star" [class.filled]="fill === 100"
+                                            [class.bad]="index < 3">&#9733;</span>
+                                        </ng-template>
+                                      </ngb-rating>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="aa-prod-view-bottom">
+                                        <button ngbTooltip="click to show more details about this product" type="button"
+                                          class="aa-add-to-cart-btn" (click)="view(product.productId)">View</button>
+                                        <button ngbTooltip="add this product to your cart" type="button"
+                                          class="aa-add-to-cart-btn"
+                                          (click)="addToCart(product)">Add To
+                                          Card</button>
+                                      </div>
+                                      <small ngbTooltip="product Published date"
+                                        class="text-muted">{{product.productDate | date}}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <pagination-controls ngbTooltip="controls Number of product per Page"
+                              class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+                              directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous"
+                              nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                            <hr />
+                            <pre ngbTooltip="Current product Page Number">Current page: {{ page }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- / product category -->
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Newest Published" ngbTooltip="Newest Published product">
+            <ng-template ngbTabContent>
+              <!-- product category -->
+              <section id="aa-product-details">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="aa-product-details-area">
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-4"
+                                *ngFor="let product of Newestproducts$ | async | paginate: { itemsPerPage: 6, currentPage: page }">
+                                <div class="card mb-4 shadow-sm">
+                                  <img *ngIf="product.productPhoto" ngbTooltip="product Image"
+                                    [src]="'data:Image/jpg;base64,' + product.productPhoto" alt="image"
+                                    class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                                    aria-label="Placeholder: Thumbnail" />
+                                  <div class="card-body">
+                                    <p class="card-text" ngbTooltip="product Name">productName: {{product.productName}}
+                                    </p>
+                                    <p class="card-text" ngbTooltip="product Price">productPrice:
+                                      {{product.productPrice}} LE</p>
+                                    <p class="card-text" ngbTooltip="product View Number">productViews:
+                                      {{product.productViews}}</p>
+                                    <p class="card-text" ngbTooltip="product Likes Number">productLikes:
+                                      {{product.likes}}</p>
+                                    <p class="card-text" ngbTooltip="product Rating Value">
+                                      <ngb-rating [(rate)]="product.rating">
+                                        <ng-template let-fill="fill" let-index="index">
+                                          <span class="star" [class.filled]="fill === 100"
+                                            [class.bad]="index < 3">&#9733;</span>
+                                        </ng-template>
+                                      </ngb-rating>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="aa-prod-view-bottom">
+                                        <button ngbTooltip="click to show more details about this product" type="button"
+                                          class="aa-add-to-cart-btn" (click)="view(product.productId)">View</button>
+                                        <button ngbTooltip="add this product to your cart" type="button"
+                                          class="aa-add-to-cart-btn"
+                                          (click)="addToCart(product)">Add To
+                                          Card</button>
+                                      </div>
+                                      <small ngbTooltip="product Published date"
+                                        class="text-muted">{{product.productDate | date}}</small>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <pagination-controls ngbTooltip="controls Number of product per Page"
+                              class="d-flex justify-content-center" style="font-size: 22px" (pageChange)="page = $event"
+                              directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous"
+                              nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+                            </pagination-controls>
+                            <hr />
+                            <pre ngbTooltip="Current product Page Number">Current page: {{ page }}</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- / product category -->
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Products section -->

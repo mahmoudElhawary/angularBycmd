@@ -1,0 +1,148 @@
+<!-- product category -->
+<section id="aa-product-details" *ngIf="product">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-product-details-area">
+            <div class="aa-product-details-content">
+              <div class="row">
+                <!-- Modal view slider -->
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                  <div class="aa-product-view-slider">
+                    <div id="demo-1" class="simpleLens-gallery-container">
+                      <div class="simpleLens-container">
+                        <div class="simpleLens-big-image-container">
+                          <a data-lens-image="/assets/img/view-slider/large/polo-shirt-1.png"
+                            class="simpleLens-lens-image"><img [src]="'data:Image/jpg;base64,' + product.productPhoto"
+                              class="simpleLens-big-image" /></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal view content -->
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                  <div class="aa-product-view-content">
+                    <h3>productName: {{product.productName}}</h3>
+                    <div class="aa-price-block">
+                      <span class="aa-product-view-price">productPrice: {{product.productPrice}} $</span>
+                      <p class="aa-product-avilability">
+                        Avilability: <span>{{product.productCondition}}</span>
+                      </p>
+                    </div>
+                    <p>
+                      productDescription: {{product.productDescription}}
+                    </p>
+                    <h4>Size: {{product.size}}</h4>
+                    <h4>Color</h4>
+                    <div class="aa-color-tag">
+                      <a href="#" class="aa-color-{{product.color}}"></a>
+                    </div>
+                    <div class="aa-prod-view-bottom">
+                      <a class="aa-add-to-cart-btn" style="cursor: pointer;" (click)="addToCart(product)">Add To Cart</a>
+                      <a class="aa-add-to-cart-btn" style="cursor: pointer;">Wishlist</a>
+                      <a class="aa-add-to-cart-btn" style="cursor: pointer;">Compare</a>
+                      <a class="aa-add-to-cart-btn" style="cursor: pointer;"
+                        (click)="getProducts(product.productCategory.subCategoryName)">Related Products</a>
+                    </div>
+                    <!-- COMMENT AND LIKE TAGE-->
+                    <div>
+                      <div>
+                        <h4>Rate this Product</h4>
+                        <div class="form-group">
+                          <ngb-rating style="font-size: 20px;margin: 7px" [(rate)]="currentRate" [readonly]="false"
+                            (dblclick)="rateProduct(product)">
+                            <ng-template let-fill="fill" let-index="index">
+                              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                            </ng-template>
+                          </ngb-rating>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <a style="cursor: pointer;font-size: 30px;margin: 7px ;" class="fas fa-comment-dots"
+                            role="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">
+                          </a>
+                          {{product.productCommentList}}
+                        </div>
+
+                      </div>
+                      <hr>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+
+                          <div class="alert alert-light" style="border-bottom: 1px solid tomato" role="alert"
+                            *ngFor="let comment of comments$ | async">
+                            <div class="row">
+                              <div class="col-md-5">
+                                <div>{{comment.commentCotents }}</div>
+                              </div>
+                              <div class="col-md-4">
+                                <div>{{comment.commentDate | date:'shortDate' }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- product comment list -->
+                          <div>
+                            <form [formGroup]="commentForm">
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="make an comment"
+                                  aria-label="make an comment" aria-describedby="button-addon2"
+                                  formControlName="commentCotents" (keyup.enter)="commentProduct(product)">
+                                <div class="input-group-append">
+                                  <button [disabled]="!commentForm.valid" (click)="commentProduct(product)" type="submit"
+                                    class="btn btn-primary" type="button" id="button-addon2">Comment
+                                    Now</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Related product -->
+            <div class="aa-product-related-item">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let product of (subCategories$ | async)">
+                    <div class="card mb-4 shadow-sm">
+                      <img *ngIf="product.productPhoto" [src]="'data:Image/jpg;base64,' + product.productPhoto"
+                        alt="image" class="bd-placeholder-img card-img-top" style="width: 100% ;height: 350px;"
+                        aria-label="Placeholder: Thumbnail" />
+                      <div class="card-body">
+                        <p class="card-text">productName: {{product.productName}}</p>
+                        <p class="card-text">productPrice: {{product.productPrice}}</p>
+                        <p class="card-text">
+                          <ngb-rating [(rate)]="product.rating">
+                            <ng-template let-fill="fill" let-index="index">
+                              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                            </ng-template>
+                          </ngb-rating>
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="aa-prod-view-bottom">
+                            <button type="button" class="aa-add-to-cart-btn"
+                              (click)="view(product.productId)">View</button>
+                            <button type="button" class="aa-add-to-cart-btn" (click)="addToCart(product)">Add To
+                              Card</button>
+                            <button type="button" class="aa-add-to-cart-btn" (click)="back()">Back</button>
+                          </div>
+                          <small class="text-muted">{{product.productDate | date}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / product category -->

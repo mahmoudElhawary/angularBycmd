@@ -1,0 +1,84 @@
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <hr>
+            <h2 ngbTooltip="Here You Are Apple To Create New Category">Create Category</h2>
+            <hr>
+            <form [formGroup]="categoryForm">
+              <div class="form-group" ngbTooltip="please enter Your main Category Name">
+                <label for="mainCategoryName">main Product Category Name*:</label>
+                <input type="text" class="form-control" id="mainCategoryName" name="mainCategoryName"
+                  placeholder="mainCategoryName" formControlName="mainCategoryName" />
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group" ngbTooltip="please enter Your Sub Category Name">
+                    <label for="sub1">Sub Product Category Name*:</label>
+                    <input type="text" class="form-control" id="subCategoryName" name="subCategoryName"
+                      placeholder="subCategoryName" formControlName="subCategoryName" />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.valid"
+                (click)="category.categoryId == null ? createCategory(categoryForm) : updateCategory(categoryForm)"
+                ngbTooltip="please click to Creat this Category">
+                {{category.categoryId == null ? 'Craete Category' : 'Update Category'}}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="aa-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-contact-area">
+          <!-- Contact address -->
+          <div class="aa-contact-address">
+            <h2>All Category</h2>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Main Category Name</th>
+                  <th scope="col">Sub Category Name</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">Update Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories$ | async">
+                  <td>{{ category.mainCategoryName }}</td>
+                  <td>{{ category.subCategoryName }}</td>
+                  <td>{{ category.createdDate | date }}</td>
+                  <td>{{ category.updatedDate | date}}</td>
+                  <td>
+                    <div style="margin-bottom: 5px">
+                      <button class="btn btn-danger" (click)="delete(category)"
+                        ngbTooltip="Click to delete This Category">
+                        Delete Category
+                      </button>
+                    </div>
+                    <div>
+                      <button class="btn btn-warn" (click)="Update(category.categoryId)"
+                        ngbTooltip="Click to Update This Category">
+                        Update Category
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

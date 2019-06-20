@@ -1,0 +1,125 @@
+<!-- Start header section -->
+<header id="aa-header">
+  <!-- start header top  -->
+  <div class="aa-header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-header-top-area">
+            <!-- start header top left -->
+            <div class="aa-header-top-left">
+              <!-- start cellphone -->
+              <div class="cellphone hidden-xs">
+                <p><span class="fa fa-phone"></span>01152190697</p>
+              </div>
+              <!-- / cellphone -->
+            </div>
+            <!-- / header top left -->
+            <div class="aa-header-top-right">
+              <ul class="aa-head-top-nav-right">
+                <li *ngIf="user" ngbTooltip="Click to show {{ user.firstName }} Account"
+                  [class.aaactive]="''">
+                  <a [routerLink]="['/account']" routerLinkActive="router-link-active">{{ user.firstName }}
+                    {{ user.lastName }} <img *ngIf="user.userPhoto" style="width: 60px; height: 60px;border-radius: 50%"
+                      [src]="'data:Image/jpg;base64,' + user.userPhoto"></a>
+                </li>
+                <li *ngIf="user" class="hidden-xs"ngbTooltip="Recommendation Products For {{user.firstName}}">
+                  <a [routerLink]="['/wishlist']" routerLinkActive="router-link-active">Wishlist</a>
+                </li>
+                <li class="hidden-xs" ngbTooltip="your cart products">
+                  <a [routerLink]="['/cart']" routerLinkActive="router-link-active">My Cart</a>
+                </li>
+                <li class="hidden-xs" ngbTooltip="All Users Products Click Here">
+                  <a [routerLink]="['/users']" routerLinkActive="router-link-active">Users</a>
+                </li>
+                <li class="hidden-xs" ngbTooltip="Any Help Methods Is Here" >
+                  <a [routerLink]="['/help']" routerLinkActive="router-link-active" >Help</a>
+                </li>
+                <li class="hidden-xs" ngbTooltip="Instructions For you for good usage" >
+                  <a [routerLink]="['/instructions']" routerLinkActive="router-link-active">Instructions</a>
+                </li>
+                <li *ngIf="!currentStatus.status" ngbTooltip="Login Page" >
+                  <a [routerLink]="['/login']" routerLinkActive="router-link-active">login</a>
+                </li>
+
+                <li *ngIf="!currentStatus.status" ngbTooltip="Register Page">
+                  <a [routerLink]="['/signup']" routerLinkActive="router-link-active">sign up</a>
+                </li>
+                <li *ngIf="currentStatus.status && admin != null" ngbTooltip="Admin Page" >
+                  <a [routerLink]="['/adminpage']" routerLinkActive="router-link-active">Admin</a>
+                </li>
+                <li *ngIf="currentStatus.status" ngbTooltip="Logout" >
+                  <a (click)="logout()" style="cursor: pointer;">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / header top  -->
+
+  <!-- start header bottom  -->
+  <div class="aa-header-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-header-bottom-area">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- logo  -->
+                <div class="aa-logo" style="cursor: pointer" [routerLink]="['/home']" ngbTooltip="Home Page">
+                  <!-- Text based logo -->
+                  <a [routerLink]="['/home']" routerLinkActive="router-link-active">
+                    <span class="fa fa-shopping-cart"></span>
+                    <p>
+                      Gollden<strong>Dollar</strong>
+                      <span>Your Shopping Partner</span>
+                    </p>
+                  </a>
+                  <!-- img based logo -->
+                  <!-- <a href="index.html"><img src="/assets/img/logo.jpg" alt="logo img"></a> -->
+                </div>
+
+              </div>
+              <div class="col-md-8">
+                <!-- / logo  -->
+                <!-- search box -->
+                <div style="z-index: 9999999999999999999999999999; margin: 0 auto">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <input type="text" class="form-control" [formControl]="search" placeholder="search products"
+                            [(ngModel)]="searchValue" (keyup)="searchNames()" (keyup.enter)="searchButtom()"
+                            ngbTooltip="Press Enter To Serach">
+                          <div *ngIf="searchValue">
+                            <div
+                              style="cursor: pointer; padding: 0 ;margin: 0;border-bottom: solid 1px rgb(206, 203, 206)"
+                              class="alert alert-light" role="alert" *ngFor="let names of productsNames$ | async"
+                              (click)="show(names)" ngbTooltip="Click To Show This Product">{{names}}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <button ngbTooltip="Click To Serach For All Product" [disabled]="searchValue == null"
+                          (click)="searchButtom()" style="background: #ff2851" class="btn btn-primary">Search</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- / search box -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / header bottom  -->
+</header>
+<!-- / header section -->
+<!-- <app-menu2></app-menu2> -->
+<!-- <app-help></app-help> -->
+<app-support></app-support>

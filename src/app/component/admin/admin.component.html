@@ -1,0 +1,57 @@
+<!-- start contact section -->
+<section id="aa-contact">
+  <div class="container">
+    <h1>Admin Page</h1>
+    <hr>
+    <!-- Contact address -->
+    <div class="aa-contact-address" style="height: 150px;">
+      <div
+        style="display: flex ; justify-content: space-between ; margin-top: 50px"
+      >
+        <button
+          type="button"
+          class="btn btn-secondary"
+          style=" margin: 10px ; font-size: 22px"
+          (click)="showProducts()"
+        >
+          products
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary active"
+          style=" margin: 10px ; font-size: 22px"
+          (click)="showUsers()"
+        >
+          Users
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          style=" margin: 10px ; font-size: 22px"
+          [routerLink]="['/category-admin']"
+          routerLinkActive="router-link-active"
+          (click)="showCategories()"
+        >
+          categories
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          style=" margin: 10px ; font-size: 22px"
+          (click)="showContacts()"
+        >
+          contact us content
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          style=" margin: 10px ; font-size: 22px"
+          (click)="showOrders()"
+        >
+          orders
+        </button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>
