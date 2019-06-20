@@ -97,8 +97,9 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   width: 32px;
   height: 24px;
   text-align: center;
-  top:50%;
+  top:54%;
   color: crimson ;
+  background: #777 ;
   outline: none;
 }
 
@@ -107,18 +108,21 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   font-size: 0px;
   font-weight: 300;
   color: rgb(250, 6, 6);
-  top:50%;
+  background: #777 ;
+  top:54%;
   height:40px;
   display: block;
   outline: none;
 }
 
 /* Menu Icons for Devices*/
-.ic.menu { top:50%; z-index : 20; color: rgb(226, 26, 26);}
+.ic.menu { top:54%; z-index : 20; color: rgb(226, 26, 26); background: #777 ;}
 
 .ic.menu .line {
   height: 4px;
   width: 100%;
+  color: brown lavender ;
+  background: #777 ;
   display: block;
   margin-bottom: 6px;
 }

@@ -1,5 +1,5 @@
 {
-  "name": "jwtspringboot-angular-app",
+  "name": "angular-shop",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "deploy:gh": "ng build --prod --base-href='https://mahmoudElhawary.github.io/angularBycmd/' && ngh" ,
     "postinstall": "ng build --aot --prod"
   },
   "private": true,
@@ -68,7 +69,7 @@
     "typescript": "~3.2.2"
   },
   "engines": {
-    "node": "~8.11.3",
-    "npm": "~6.9.0"
+     "node": "~8.11.3",
+     "npm": "~6.9.0"
   }
 }

@@ -26,6 +26,7 @@ export class UserComponent implements OnInit , OnChanges {
   address$ ;
   selectedOption;
   id: number ;
+  page ;
   productFile: any = File;
   allFiles: any = [];
   constructor(private loginService: LoginService ,

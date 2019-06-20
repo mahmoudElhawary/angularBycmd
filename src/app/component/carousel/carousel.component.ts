@@ -23,6 +23,17 @@ export class CarouselComponent implements OnInit {
   id: number;
   loginUser: any = {};
   cartForm: FormGroup;
+  images = [
+    '../../../assets/img/صور/mens/06ed121b8aa12c19bb53804ab7cba16b.jpg' ,
+    '../../../assets/img/صور/mens/11e2678846c21bb10c17bd1f03bf9123.jpg' ,
+    '../../../assets/img/صور/mens/3430d13988cfa552929cb1c17424500a.jpg' ,
+    '../../../assets/img/صور/mens/36fbbf28f8d9cda63a8adcb617c81239.jpg' ,
+    '../../../assets/img/صور/mens/4b64c18065cfc745be039c1ba14ac2b5.jpg' ,
+    '../../../assets/img/صور/mens/8f952121f8e631e13c32bc09cb9eb35b.jpg' ,
+    '../../../assets/img/صور/mens/7ee2a109c0c396a03a678a22b1c1db80.jpg' ,
+    '../../../assets/img/صور/mens/549450d8007170d85b2af5b5949f72b7.jpg' ,
+    '../../../assets/img/صور/mens/2360d2830eced55807a6f8ed7f708129.jpg' ,
+  ] ;
   constructor(
     configSlider: NgbCarouselConfig,
     private configRate: NgbRatingConfig,

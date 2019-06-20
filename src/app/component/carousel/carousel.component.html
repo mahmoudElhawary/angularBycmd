@@ -1,7 +1,7 @@
 <section id="checkout" *ngIf="products$">
   <div class="row">
     <div class="col-md-12">
-      <ngb-carousel>
+      <ngb-carousel *ngIf="products$">
         <ng-template ngbSlide *ngFor="let item of (products$ | async)">
           <a style="cursor: pointer" ngbTooltip="Click to show more details About this Product"
             (click)="view(item.productId)">
@@ -14,6 +14,22 @@
                 <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
               </ng-template>
             </ngb-rating>
+            <div>
+              <button ngbTooltip="Click To Add This Product To your Cart" (click)="addToCart(item)"
+                class="alert alert-warning" style="width: 75%; opacity: .3;color: rgb(0, 0, 0)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <ngb-carousel *ngIf="!products$">
+        <ng-template ngbSlide *ngFor="let item of images">
+          <a style="cursor: pointer" ngbTooltip="Click to show more details About this Product">
+            <img [src]="item" alt="Random first slide" width="100%"
+              height="350px" />
+          </a>
+          <div class="carousel-caption">
             <div>
               <button ngbTooltip="Click To Add This Product To your Cart" (click)="addToCart(item)"
                 class="alert alert-warning" style="width: 75%; opacity: .3;color: rgb(0, 0, 0)">
